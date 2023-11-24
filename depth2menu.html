@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2단메뉴제작하기</title>
+    <script>
+        const data = [
+            {
+                listnm: "랭콘소개",
+                href: "#none",
+                list: [
+                    {
+                        listnm: "랭콘소개 소메뉴",
+                        href: "http://naver.com",
+                    },
+                    {
+                        listnm: "메뉴2",
+                        href: "http://naver.com",
+                    },
+                    {
+                        listnm: "메뉴3",
+                        href: "http://naver.com",
+                    },
+                ]
+            },
+            {
+                listnm: "프로그램",
+                href: "#none",
+                list: [
+                    {
+                        listnm: "프로그램소메뉴",
+                        href: "http://naver.com",
+                    },
+                    {
+                        listnm: "메뉴2",
+                        href: "http://naver.com",
+                    },
+                    {
+                        listnm: "메뉴3",
+                        href: "http://naver.com",
+                    },
+                    {
+                        listnm: "메뉴3",
+                        href: "http://naver.com",
+                    },
+                ]
+            },
+            {
+                listnm: "입학안내",
+                href: "#none",
+                list: [
+                    {
+                        listnm: "입학안내 소메뉴1",
+                        href: "http://naver.com",
+                    },
+                    {
+                        listnm: "메뉴2",
+                        href: "http://naver.com",
+                    },
+                    {
+                        listnm: "메뉴3",
+                        href: "http://naver.com",
+                    },
+                ]
+            },
+        ]
+    </script>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            // $("body").addClass('bby');
+            let litag = "";
+
+            for (z in data) {
+                //대메뉴출력
+                litag += `<li><a href="${data[z].href}">${data[z].listnm}</a>`
+                litag += `<ul>`
+                for (a in data[z].list) {
+                    litag += `<li><a href="${data[z].list[a].href}">${data[z].list[a].listnm}</a></li>`
+                }
+                litag += `</ul>`
+                litag += `</li>`;
+            }
+
+            $("#gnb").html(litag)
+
+            // let strongs = "";
+
+            // for (x in data) {
+            //     strongs += `<strong>${data[x].listnm}</strong><br><br>`;
+
+
+            // }
+
+            // let tabContent = "";
+
+            // for (y in data[0].list) {
+            //     tabContent += `<p>${data[0].list[y].listnm}</p>`;
+            // }
+
+
+            // $("#tab").html(strongs)
+            // // $(".tabContent").html(tabContent);
+
+            // //click Event 
+
+            // let clickText = "";
+
+            // $("#tab strong").on("click", function () {
+
+            //     clickText = "";
+
+            //     console.log($(this));
+
+
+            //     console.log([$("strong").index(this)]);
+            //     // console.log([$(this).index(this)]);
+            //     console.log([$(this).index()]);
+
+            //     for (j in data[$("strong").index(this)].list) {
+            //         // clickText += `<p>${data[$(this).index()].list[j].listnm}</p>`;
+            //         clickText += `<p>${data[$("strong").index(this)].list[j].listnm}</p>`;
+            //     }
+
+
+
+            //     // console.log(clickText);
+            //     $(".tabContent").html(clickText);
+            // })
+
+            let depth_1 = "";
+
+
+
+            for (x in data) {
+                depth_1 += `<strong>${data[x].listnm}</strong>`;
+            }
+
+
+            $("#tab").html(depth_1);
+
+
+            let depth_2 = "";
+
+            $("#tab strong").on("click", function () {
+
+                depth_2 = "";
+                console.log(this);
+                console.log($(this).index());
+
+                console.log(data[$(this).index()].list);
+
+                depth_2 += "<ul>";
+
+                for (y in data[$(this).index()].list) {
+                    depth_2 += `<li><a href = ${data[$(this).index()].list[y].href}>${data[$(this).index()].list[y].listnm}</a></li>`;
+                }
+
+
+                depth_2 += "</ul>";
+
+                console.log(depth_2);
+
+                $(".tabContent").html(depth_2);
+            })
+
+
+
+
+        })
+
+    </script>
+</head>
+
+<body>
+    <ul id="gnb">
+
+    </ul>
+
+    <div id="tab">
+        여기에 strong 태그로 1단메뉴 출력하기
+    </div>
+    <div class="tabContent">
+        여기에 첫번째 1단메뉴의 소메뉴들을 노출하기
+    </div>
+
+
+</body>
+
+</html>

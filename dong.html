@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+    <script src="./multyArr.js"></script>
+
+    <script>
+
+
+
+        $(document).ready(function () {
+
+            let litag = "";
+
+
+            for (x in data) {
+                litag += `<li><a href = "${data[x].href}">${data[x].listnm}</a>`;
+
+                litag += "<ul>";
+
+                for (y in data[x].list) {
+                    litag += `<li><a href = ${data[x].list[y].href}>${data[x].list[y].listnm}</a>`;
+
+                    if (data[x].list[y].attr) {
+                        litag += "<ul>";
+
+                        for (z in data[x].list[y].attr)
+                            litag += `<li>${data[x].list[y].attr[z].js}</li>`;
+                        litag += `<li>${data[x].list[y].attr[z].c}</li>`;
+                        litag += `<li>${data[x].list[y].attr[z].python}</li>`;
+
+                        litag += "</ul>";
+                    }
+
+                    litag += "</li>";
+                }
+
+
+                litag += "</ul>";
+
+                litag += "</li>";
+
+            }
+
+
+            $("#gnb").html(litag);
+        })
+
+    </script>
+</head>
+
+<body>
+    <ul id="gnb">
+
+
+    </ul>
+</body>
+
+</html>

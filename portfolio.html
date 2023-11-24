@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 개인포트폴리오/ 가볍게 짜기 </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="./nhnData.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            let cmd = "";
+
+            for (x in nhncategoty) {
+
+                cmd += `<li>
+                    <a href = '${nhncategoty[x].href}'>${nhncategoty[x].gnbList}</a>`
+
+                for (z in nhncategoty[x].sub) {
+
+                    if (nhncategoty[x].sub) cmd += `<ul>`;
+
+                    cmd += `<li><a href = '${nhncategoty[x].sub[z].href}'}>${nhncategoty[x].sub[z].gnbSubList}</a></li>`
+
+
+                    if (nhncategoty[x].sub) cmd += `</ul>`
+                }
+
+
+                cmd += `</li>`;
+
+            }
+
+
+            $("#gnb").html(cmd);
+        })
+    </script>
+</head>
+
+<body>
+
+    <head id="hd" class="fixed-top bg-white border-bottom">
+        <div class="container d-flex justify-content-between">
+            <h1>로고</h1>
+            <ul id="gnb" class="d-flex"></ul>
+            <div id="global">
+                지도아이콘
+            </div>
+        </div>
+    </head>
+</body>
+
+</html>
